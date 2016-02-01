@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6233" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6233"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,8 +12,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="button" destination="lUE-Pc-xZJ" id="B7Z-Ot-Urv"/>
+                <outlet property="imageView" destination="o7V-As-FSV" id="kI4-N3-4Wm"/>
+                <outlet property="nowplayingText" destination="tDy-U1-w16" id="5w7-F5-5Hi"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -666,15 +670,64 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="NowPlaying" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+        <window title="NowPlaying" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="contentRect" x="200" y="300" width="480" height="61"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="61"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lUE-Pc-xZJ">
+                        <rect key="frame" x="424" y="13" width="42" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="czu-5m-xXE"/>
+                            <constraint firstAttribute="width" constant="30" id="zXm-yL-0oK"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qt5-UF-cgb">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="share:" target="Voe-Tx-rLC" id="yMa-Gf-KGE"/>
+                        </connections>
+                    </button>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-As-FSV">
+                        <rect key="frame" x="20" y="6" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="MiB-Ml-krJ"/>
+                            <constraint firstAttribute="height" constant="48" id="wDS-5q-XML"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Gfs-ep-dgg"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2lJ-Mp-SWt">
+                        <rect key="frame" x="86" y="20" width="326" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="800" id="IBv-fQ-S86"/>
+                            <constraint firstAttribute="height" constant="21" id="pdg-Tk-imp"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="#NowPlaying" id="tDy-U1-w16">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="lUE-Pc-xZJ" secondAttribute="bottom" constant="20" id="D9o-on-Buz"/>
+                    <constraint firstItem="lUE-Pc-xZJ" firstAttribute="leading" secondItem="2lJ-Mp-SWt" secondAttribute="trailing" constant="20" id="P5M-Kp-INs"/>
+                    <constraint firstItem="lUE-Pc-xZJ" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="TsT-Y4-TUR"/>
+                    <constraint firstAttribute="trailing" secondItem="lUE-Pc-xZJ" secondAttribute="trailing" constant="20" id="ai3-WO-6Rh"/>
+                    <constraint firstItem="o7V-As-FSV" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="bPl-qa-h0h"/>
+                    <constraint firstItem="2lJ-Mp-SWt" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="bdc-fy-Tts"/>
+                    <constraint firstItem="2lJ-Mp-SWt" firstAttribute="leading" secondItem="o7V-As-FSV" secondAttribute="trailing" constant="20" id="hiD-TS-7oW"/>
+                    <constraint firstItem="o7V-As-FSV" firstAttribute="centerY" secondItem="2lJ-Mp-SWt" secondAttribute="centerY" id="lK2-ib-RFX"/>
+                    <constraint firstAttribute="bottom" secondItem="2lJ-Mp-SWt" secondAttribute="bottom" constant="20" id="yEO-Yb-krj"/>
+                    <constraint firstItem="lUE-Pc-xZJ" firstAttribute="leading" secondItem="2lJ-Mp-SWt" secondAttribute="trailing" constant="20" id="yqP-Cy-Aru"/>
+                </constraints>
             </view>
+            <point key="canvasLocation" x="305" y="217.5"/>
         </window>
     </objects>
 </document>

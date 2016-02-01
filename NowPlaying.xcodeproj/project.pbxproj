@@ -11,7 +11,21 @@
 		A91AE7141C5F3BF800B7471C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AE7131C5F3BF800B7471C /* main.m */; };
 		A91AE7161C5F3BF800B7471C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A91AE7151C5F3BF800B7471C /* Assets.xcassets */; };
 		A91AE7191C5F3BF800B7471C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91AE7171C5F3BF800B7471C /* MainMenu.xib */; };
+		A91AE7261C5F3C4D00B7471C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A91AE7211C5F3C2300B7471C /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A91AE7481C5F5A9B00B7471C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A91AE70C1C5F3BF800B7471C /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,6 +35,9 @@
 		A91AE7151C5F3BF800B7471C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A91AE7181C5F3BF800B7471C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A91AE71A1C5F3BF800B7471C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A91AE7201C5F3C1200B7471C /* iTunes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
+		A91AE7211C5F3C2300B7471C /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		A91AE7331C5F5A9B00B7471C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A91AE7261C5F3C4D00B7471C /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,7 +55,9 @@
 		A91AE7031C5F3BF800B7471C = {
 			isa = PBXGroup;
 			children = (
+				A91AE7211C5F3C2300B7471C /* ScriptingBridge.framework */,
 				A91AE70E1C5F3BF800B7471C /* NowPlaying */,
+				A91AE7321C5F5A9B00B7471C /* Frameworks */,
 				A91AE70D1C5F3BF800B7471C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +73,7 @@
 		A91AE70E1C5F3BF800B7471C /* NowPlaying */ = {
 			isa = PBXGroup;
 			children = (
+				A91AE7201C5F3C1200B7471C /* iTunes.h */,
 				A91AE70F1C5F3BF800B7471C /* AppDelegate.h */,
 				A91AE7101C5F3BF800B7471C /* AppDelegate.m */,
 				A91AE7151C5F3BF800B7471C /* Assets.xcassets */,
@@ -71,6 +92,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A91AE7321C5F5A9B00B7471C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A91AE7331C5F5A9B00B7471C /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,6 +110,7 @@
 				A91AE7081C5F3BF800B7471C /* Sources */,
 				A91AE7091C5F3BF800B7471C /* Frameworks */,
 				A91AE70A1C5F3BF800B7471C /* Resources */,
+				A91AE7481C5F5A9B00B7471C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
