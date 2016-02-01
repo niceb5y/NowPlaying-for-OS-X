@@ -15,6 +15,7 @@
 @property (weak) IBOutlet NSTextFieldCell *nowplayingText;
 @property (weak) IBOutlet NSImageView *imageView;
 @property (weak) IBOutlet NSButton *button;
+
 - (IBAction)share:(id)sender;
 
 @end

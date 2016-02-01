@@ -11,7 +11,11 @@
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
-@property (weak) iTunesApplication *iTunes;
+
+@property (nonatomic, copy) NSString *album;
+@property (nonatomic, copy) NSString *artist;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, retain) NSImage *albumart;
 
 @end
 
@@ -30,26 +34,40 @@
 }
 
 - (IBAction)share:(id)sender {
-	iTunesApplication *iTunes = (iTunesApplication *)[[SBApplication alloc] initWithBundleIdentifier:@"com.apple.iTunes"];
-	iTunesTrack *track = iTunes.currentTrack;
-	NSImage *image = track.artworks[0].data;
-	NSMutableArray *array = [NSMutableArray arrayWithObject:[NSString stringWithFormat:@"#NowPlaying %@ - %@ - %@", track.artist, track.album, track.name]];
-	if (image) [array addObject:image];
+	NSMutableArray *array = [NSMutableArray arrayWithObject:[NSString stringWithFormat:@"#NowPlaying %@ - %@ - %@", self.artist, self.album, self.title]];
+	
+	if (self.albumart) [array addObject:self.albumart];
+	
 	NSSharingServicePicker *picker = [[NSSharingServicePicker alloc] initWithItems:array];
 	picker.delegate = self;
+	
 	[picker showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMinYEdge];
 }
 
 - (void)update {
 	iTunesApplication *iTunes = (iTunesApplication *)[[SBApplication alloc] initWithBundleIdentifier:@"com.apple.iTunes"];
 	iTunesTrack *track = iTunes.currentTrack;
-	_imageView.image = track.artworks[0].data;
-	[_nowplayingText setTitle:[NSString stringWithFormat:@"%@ - %@ - %@", track.artist, track.album, track.name]];
+	
+	self.album = track.album;
+	self.artist = track.artist;
+	self.title = track.name;
+	self.albumart = track.artworks[0].data;
+	
+	@try {
+		self.imageView.image = self.albumart;
+	}
+	@catch (NSException *exception) {
+		self.albumart = nil;
+	}
+	
+	[_nowplayingText setTitle:[NSString stringWithFormat:@"%@ - %@ - %@", self.artist, self.album, self.title]];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
 	return YES;
 }
+
+# pragma mark Delegate Methods
 
 - (id <NSSharingServiceDelegate>)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker delegateForSharingService:(NSSharingService *)sharingService {
 	return self;
